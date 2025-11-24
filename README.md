@@ -51,6 +51,29 @@ Analiza una secuencia de ADN y guarda el resultado en la base de datos.
 }
 ```
 
+## 🚀 Instrucciones de Ejecución
+
+### Prerrequisitos
+* Java 21 (JDK)
+* Git (Opcional, para clonar)
+
+### 1. Ejecutar la API localmente
+Si deseas levantar el servidor en tu propia máquina (localhost:8080):
+
+```bash
+# Clonar el repositorio
+git clone [https://github.com/TU_USUARIO/mutant-detector.git](https://github.com/TU_USUARIO/mutant-detector.git)
+
+# Entrar a la carpeta
+cd mutant-detector
+
+# Ejecutar con Maven Wrapper (Windows)
+./mvnw spring-boot:run
+
+# Ejecutar con Maven Wrapper (Linux/Mac)
+./mvnw spring-boot:run
+```
+
 ## 📊 Diagrama de Secuencia
 
 Flujo de ejecución cuando se recibe un ADN:
