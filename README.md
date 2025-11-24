@@ -49,3 +49,46 @@ Analiza una secuencia de ADN y guarda el resultado en la base de datos.
         "TCACTG"
     ]
 }
+```
+
+## 📊 Diagrama de Secuencia
+
+Flujo de ejecución cuando se recibe un ADN:
+
+```mermaid
+sequenceDiagram
+    participant Client as Cliente (Postman/cURL)
+    participant Controller as MutantController
+    participant Service as MutantService
+    participant Repo as DnaRepository
+    participant DB as H2 Database
+
+    Client->>Controller: POST /mutant/ {dna}
+    Note over Controller: Valida JSON (@Valid)
+    Controller->>Service: analyze(dna)
+    
+    Service->>Service: Calcular Hash del ADN
+    
+    Service->>Repo: findByDnaHash(hash)
+    Repo->>DB: SELECT ... WHERE hash = ?
+    
+    alt Ya existe en BD (Cache)
+        DB-->>Repo: Registro encontrado
+        Repo-->>Service: DnaRecord
+        Service-->>Controller: return isMutant (booleano)
+    else Es Nuevo
+        DB-->>Repo: null
+        Repo-->>Service: empty
+        Note over Service: Ejecutar Algoritmo (N*N)
+        Service->>Service: isMutantAlgorithm(dna)
+        Service->>Repo: save(newRecord)
+        Repo->>DB: INSERT ...
+        Service-->>Controller: return result
+    end
+
+    alt result == true
+        Controller-->>Client: 200 OK
+    else result == false
+        Controller-->>Client: 403 Forbidden
+    end
+```
