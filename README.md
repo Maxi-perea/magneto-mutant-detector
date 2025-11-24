@@ -1,3 +1,4 @@
+Global Integrador - Máximo Perea 51033 3K09
 # 🧬 Mutant Detector API
 
 ![Java](https://img.shields.io/badge/Java-21-orange) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2.3-green) ![Coverage](https://img.shields.io/badge/Coverage->80%25-brightgreen)
@@ -22,6 +23,8 @@ Un humano es mutante si se encuentran **más de una secuencia de cuatro letras i
 * **Testing:** JUnit 5 + Mockito.
 * **Despliegue:** Docker + Render.
 * **Build Tool:** Maven.
+* **IA:** Gemini 3 Pro.
+
 
 ---
 
